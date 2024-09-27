@@ -16,7 +16,7 @@ if (bmi < 18.5) {
   }
 
 switch (bmi) {
-  case < 18.5:
+  case 18.5:
     console.log("體重過輕");
     break;
   case "Apples":
