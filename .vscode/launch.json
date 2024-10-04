@@ -12,8 +12,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${file}"
-            "console": "integratedTerminal"
+            "program": "${file}",
+            "console":"integratedTerminal"
         }
     ]
 }
