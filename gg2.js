@@ -1,5 +1,4 @@
-String text = "中文";
-byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);
+
 
 var readline = require("readline-sync");
 
