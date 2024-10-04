@@ -1,5 +1,3 @@
-
-
 var readline = require("readline-sync");
 
 var Ans=Math.floor(Math.random()*9)+1 //0<= rand <1
