@@ -18,7 +18,7 @@ while(!win){
     if(Ans == G){
         console.log("You Win!")
         //question
-        var again=readline.question("Again? Yes/No");
+        var again=readline.question("Again? Yes/No ");
         if(again=="Yes" || "yes"){
             Ans=Math.floor(Math.random()*9)+1 
         }else{
