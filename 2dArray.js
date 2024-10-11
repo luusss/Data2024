@@ -40,3 +40,13 @@ for(var _row=0;_row<row;_row++){
         dynaAry2d[_row].push(_col);
     }
 }
+
+//Dynamic2
+var row=9, col=7;
+var dynaAry2d=[];
+for(var _row=0;_row<row;_row++){
+    dynaAry2d.push([]);
+    for(var _col=0;_col<col;_col++){
+        dynaAry2d[_row].push(_col+_row*col);
+    }
+}
