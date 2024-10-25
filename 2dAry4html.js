@@ -10,7 +10,7 @@ var row=ary2d.length;
 var col=ary2d[0].length;
 
 //draw babo 
-var canvas = document.getElementById("babo ").getContext("2d");
+var canvas = document.getElementById("babo").getContext("2d");
 //var size=canvas.width/row
 for(var _row=0;_row<row;_row++){
     for(var _col=0;_col<col;_col++){
