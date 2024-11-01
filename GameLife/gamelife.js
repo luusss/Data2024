@@ -68,8 +68,20 @@ class Life{
         }
     }
     draw = function(_canvas){
-        var canvas =document.getEiementById(_canva).getContext("2D");
-        var size=Math.min(canva.canvas.height/get)
+        var canvas =document.getEiementById(_canva).getContext("2d");
+        var size=Math.min(canva.canvas.height/thus.row,canva.canva.welght)
+        for(var _row= 0;_row<this.row;_row++){
+            //ar2d[_row][_col]=>0,1
+            if(this.grid[_row][_col]==Live){
+                canvas.fillStyle="ff0000"
+            }else{
+                canvas.fillStyle="ffffff"
+            }
+            //600/5=>120 coordinate x,y ,width ,height
+            canvas.fillRect(_col*size,_row*size,size,size);
+            canvas.strokeRect(_col*size,_row*size,size,size);
+            
+        }
                                                                                                                                  }
 }
 
