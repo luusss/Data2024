@@ -67,12 +67,20 @@ class Life{
             return this.grid[row][col];
         }
     }
+    draw = function(_canvas){
+        var canvas =document.getEiementById(_canva).getContext("2D");
+        var size=Math.min(canva.canvas.height/get)
+                                                                                                                                 }
 }
 
 // Life.prototype.update= function(){
 
 // }
 
+function tonext(){
+    myGame.update();
+    myGame.draw("map")
+}
 
 var myGame = new Life(10,10);
 var myGame2 = new Life(100,100);
