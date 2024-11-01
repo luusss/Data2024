@@ -16,9 +16,17 @@ class Life{
         }
         
     }
-    initialize = function(){
-        this.grid[1][1] = Live;
-        this.grid[1][2] = this.grid[1][3] = this.grid[1][4] =Live; 
+    initialize = function(random){
+        if(random == true){
+            for(var _row=0;_row < this.row;_row++){
+                for(var _col=0;_col < this.col;_col++){
+                    this.grid[_row][_col] = (Math.random()<0.1) ? Live : Dead;
+                }
+            }
+        }else{
+            this.grid[1][1] = Live;
+            this.grid[1][2] = this.grid[1][3] = this.grid[1][4] =Live; 
+        }
     }
 
     update = function(){
@@ -127,6 +135,21 @@ function mouseClick(event){
 //    ()? :
    myGame.drawPoint("map",_row,_col);
 }
+
+function random(){
+   myGame.initialize(true);
+   myGame.draw("map");
+}
+
+var myTime;
+function run(){
+   var step = document.getElementById("step").value;
+   myTime = setInterval(tonext, Number(step));
+}
+function stop(){
+    clearInterval(myTime);
+}
+
 
 var myGame = new Life(100,100);
 var myGame2 = new Life(100,100);
