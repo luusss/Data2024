@@ -22,11 +22,11 @@ function bracketMatch(inputString){
     }
     symbol=inputString.charAt(++i);
 }
-  if (opening.length>0||!isMatched){
-    return'unmatched';
-  else 
-     return 'matched';
-}
+    if(open.length>0 || !isMatched)
+      return 'unMatched';
+    else
+      return 'matched';
+
 console.log(bracketMatch("{[()]}"));
 console.log(bracketMatch("{[(})}"));
 console.log(bracketMatch("{[}"));
