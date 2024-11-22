@@ -24,7 +24,8 @@ function bracketMatch(inputString){
 }
   if (opening.length>0||!isMatched){
     return'unmatched';
-  else return 'matched';
+  else 
+     return 'matched';
 }
 console.log(bracketMatch("{[()]}"));
 console.log(bracketMatch("{[(})}"));
