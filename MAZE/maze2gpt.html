@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迷宮視覺化</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .maze {
+      display: grid;
+      grid-template-rows: repeat(10, 30px); /* 10 行，每行高 30px */
+      grid-template-columns: repeat(12, 30px); /* 12 列，每列寬 30px */
+      gap: 2px;
+      justify-content: center;
+    }
+    .cell {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wall {
+      background-color: #333; /* 牆壁黑色 */
+    }
+    .path {
+      background-color: #fff; /* 路徑白色 */
+    }
+    .visited {
+      background-color: #87ceeb; /* 已走過的路徑藍色 */
+    }
+    .start {
+      background-color: #4caf50; /* 起點綠色 */
+      color: white;
+    }
+    .end {
+      background-color: #f44336; /* 終點紅色 */
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>迷宮MAZE</h1>
+  <div id="maze" class="maze"></div>
+  <button onclick="startTraversal()">開始尋路</button>
+  <script>
+    // 定義迷宮
+    var MAZE = [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1],
+      [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+      [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1],
+      [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+      [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
+      [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1],
+      [1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ];
+
+    // 起點與終點
+    class Point {
+      constructor(_row, _col) {
+        this.row = _row;
+        this.col = _col;
+      }
+      isEnd() {
+        return this.row === end.row && this.col === end.col;
+      }
+    }
+
+    var start = new Point(1, 1);
+    var end = new Point(8, 10);
+    var Stack = [];
+    var step = start;
+    var rollBack = false;
+
+    // 顯示迷宮
+    function renderMaze() {
+      const mazeContainer = document.getElementById("maze");
+      mazeContainer.innerHTML = ""; // 清空舊的迷宮
+      for (let i = 0; i < MAZE.length; i++) {
+        for (let j = 0; j < MAZE[i].length; j++) {
+          const cell = document.createElement("div");
+          cell.classList.add("cell");
+          if (MAZE[i][j] === 1) cell.classList.add("wall");
+          else if (MAZE[i][j] === 2) cell.classList.add("visited");
+          else if (i === start.row && j === start.col) cell.classList.add("start");
+          else if (i === end.row && j === end.col) cell.classList.add("end");
+          else cell.classList.add("path");
+          mazeContainer.appendChild(cell);
+        }
+      }
+    }
+
+    // 四個方向
+    var dir = [
+      { x: -1, y: 0 }, // 上
+      { x: 1, y: 0 },  // 下
+      { x: 0, y: -1 }, // 左
+      { x: 0, y: 1 },  // 右
+    ];
+
+    // 開始尋路
+    function startTraversal() {
+      Stack.push(step);
+      const interval = setInterval(() => {
+        if (step.isEnd()) {
+          clearInterval(interval);
+          alert("到達終點！");
+          return;
+        }
+
+        MAZE[step.row][step.col] = 2; // 標記已走過
+        renderMaze();
+
+        // 嘗試每個方向
+        let moved = false;
+        for (let i = 0; i < dir.length; i++) {
+          const nextRow = step.row + dir[i].x;
+          const nextCol = step.col + dir[i].y;
+          if (MAZE[nextRow][nextCol] === 0) {
+            if (rollBack) {
+              Stack.push(step);
+              rollBack = false;
+            }
+            step = new Point(nextRow, nextCol);
+            Stack.push(step);
+            moved = true;
+            break;
+          }
+        }
+
+        // 如果無路可走，回退
+        if (!moved) {
+          if (Stack.length > 0) {
+            step = Stack.pop();
+            rollBack = true;
+          } else {
+            clearInterval(interval);
+            alert("迷宮無解！");
+            return;
+          }
+        }
+      }, 200); // 每 200 毫秒移動一步
+    }
+
+    // 初始渲染迷宮
+    renderMaze();
+  </script>
+</body>
+</html>
