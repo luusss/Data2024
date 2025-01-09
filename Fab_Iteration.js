@@ -8,8 +8,8 @@ function Fab(n) {
     let fib = 1;
 
     for (let i = 2; i <= n; i++) {
-        fib = a + b; // Calculate current Fibonacci number
-        a = b;       // Move forward in the series
+        fib = a + b; // 計算目前的斐波那契數 Calculate current Fibonacci number
+        a = b;       // 將此數值儲存到 fabAll 陣列中 Move forward in the series
         b = fib;     // Update the previous Fibonacci number
     }
 
