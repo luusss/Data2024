@@ -1,43 +1,43 @@
 
 class TreeNode {
     constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this.value = value;  //節點的值
+        this.left = null;    // 左子節點
+        this.right = null;   // 右子節點
     }
 }
 
-function inOrderTraversal(node) {
+function inOrderTraversal(node) {  //中序
     if (node) {
-        inOrderTraversal(node.left); // Visit left subtree
-        console.log(node.value);      // Visit node
-        inOrderTraversal(node.right); // Visit right subtree
+        inOrderTraversal(node.left); // 訪問左子樹
+        console.log(node.value);      // 訪問當前節點
+        inOrderTraversal(node.right); // 訪問右子樹
     }
 }
 
-function preOrderTraversal(node) {
+function preOrderTraversal(node) {  //前序
     if (node) {
-        console.log(node.value);      // Visit node
-        preOrderTraversal(node.left); // Visit left subtree
-        preOrderTraversal(node.right); // Visit right subtree
+        console.log(node.value);      // 訪問當前節點
+        preOrderTraversal(node.left); // 訪問左子樹
+        preOrderTraversal(node.right); // 訪問右子樹
     }
 }
 
-function postOrderTraversal(node) {
+function postOrderTraversal(node) {  //後序
     if (node) {
-        postOrderTraversal(node.left); // Visit left subtree
-        postOrderTraversal(node.right); // Visit right subtree
-        console.log(node.value);        // Visit node
+        postOrderTraversal(node.left); // 訪問左子樹
+        postOrderTraversal(node.right); // 訪問右子樹
+        console.log(node.value);        // 訪問當前節點
     }
 }
 
- // Creating a simple binary tree
-const root = new TreeNode("A");
-root.left = nodeB = new TreeNode("B");
-root.right = nodeC = new TreeNode("C");
-nodeB.right = new TreeNode("D");
-nodeC.right = nodeE = new TreeNode("E");
-nodeE.left = new TreeNode("F");
+ // Creating a simple binary tree 建構一棵二元樹
+const root = new TreeNode("A");  //樹根
+root.left = nodeB = new TreeNode("B");   //樹根左邊的節點B
+root.right = nodeC = new TreeNode("C");  //樹根右邊的節點C
+nodeB.right = new TreeNode("D");         //節點B右邊的節點D
+nodeC.right = nodeE = new TreeNode("E"); //節點C右邊的節點E
+nodeE.left = new TreeNode("F");          //節點E右邊的節點F
 
 // Testing the traversals
 console.log("In-Order Traversal:");
