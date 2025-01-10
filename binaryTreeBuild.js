@@ -1,8 +1,8 @@
 class TreeNode {
     constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this.value = value;  // 節點的值
+        this.left = null;    // 左子節點
+        this.right = null;   // 右子節點
     }
 }
 
@@ -32,7 +32,7 @@ function buildTree(preorder, inorder) {
     root.left = buildTree(leftPreorder, leftInorder);
     root.right = buildTree(rightPreorder, rightInorder);
 
-    return root;
+    return root;  //最終返回構建好的二元樹
 }
 
 // Example Usage
